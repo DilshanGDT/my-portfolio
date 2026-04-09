@@ -11,6 +11,11 @@ const outfitFont = Outfit({
   weight: ["400"],
 });
 
+const ovoFont = Ovo({
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 export const metadata = {
   title: "T Dilshan - Portfolio",
   description: "",
@@ -20,7 +25,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${robotoFont.className} ${outfitFont.className} h-full antialiased`}
+      className={`${robotoFont.className} ${outfitFont.className} ${ovoFont.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
