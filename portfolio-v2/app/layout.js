@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${robotoFont.className} ${outfitFont.className} ${ovoFont.className} h-full antialiased`}
+      className={`${robotoFont.className} ${outfitFont.className} ${ovoFont.className} h-full antialiased leading-8 overflow-x-hidden`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
