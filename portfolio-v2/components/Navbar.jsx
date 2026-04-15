@@ -1,6 +1,7 @@
 import { assets } from '@/assets/assets'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
+import { motion } from 'motion/react'
 
 const Navbar = ({ isDarkMode, setIsDarkMode }) => {
 
@@ -51,9 +52,13 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                 <Image src={isDarkMode ? assets.sun_icon : assets.moon_icon} alt='' className='w-5' />
             </button>
 
-            <a href='#contact' className={`hidden lg:flex items-center gap-3 px-10 py-2.5 border rounded-full ml-4 ${isDarkMode ? "border-white/50" : "border-gray-500"}`}>
-                Contact <Image src={isDarkMode ? assets.arrow_icon_dark : assets.arrow_icon} alt='' className='w-3' />
-            </a>
+            <motion.a 
+              whileHover={{ scale: 1.01 }}
+              transition={{ duration: 0.3 }}
+              href='#contact' className={`hidden lg:flex items-center gap-3 px-10 py-2.5 border rounded-full ml-4 ${isDarkMode ? "border-white/50" : "border-gray-500"}`}>
+                Contact 
+                  <Image src={isDarkMode ? assets.arrow_icon_dark : assets.arrow_icon} alt='' className='w-3' />
+            </motion.a>
 
             <button className='block md:hidden ml-3' onClick={openMenu}>
                 <Image src={isDarkMode ? assets.menu_white : assets.menu_black} alt='' className='w-5' />

@@ -1,6 +1,7 @@
 import { assets } from '@/assets/assets'
 import Image from 'next/image'
 import React, { useState } from 'react'
+import { motion } from 'motion/react'
 
 const Contact = ({ isDarkMode }) => {
 
@@ -30,26 +31,76 @@ const Contact = ({ isDarkMode }) => {
   };
 
   return (
-    <div id='contact' className={`w-full px-[12%] py-10 scroll-mt-20 bg-no-repeat bg-center bg-size-[90%_auto] ${isDarkMode ? "bg-none" : 'bg-[url("/footer-bg-color.png")]'}`}>
-      <h4 className='text-center mb-2 text-lg font-outfit'>Connect with me</h4>
-      <h2 className='text-center text-5xl font-roboto'>Get In Touch</h2>
+    <motion.div 
+      initial={{opacity: 0}}
+      whileInView={{opacity: 1}}
+      transition={{duration: 1}}
+      id='contact' className={`w-full px-[12%] py-10 scroll-mt-20 bg-no-repeat bg-center bg-size-[90%_auto] ${isDarkMode ? "bg-none" : 'bg-[url("/footer-bg-color.png")]'}`}>
+      
+      {/* Heading & Subheading */}
+      <motion.h4 
+        initial={{opacity: 0, y: -20}}
+        whileInView={{opacity: 1, y: 0}}
+        transition={{duration: 0.5, delay: 0.3}}
+        className='text-center mb-2 text-lg font-outfit'>
+        Connect with me
+      </motion.h4>
 
-      <p className='text-center max-w-2xl mx-auto mt-5 mb-12 font-outfit'>I would love to hear from you! If you have any questions, comments or feedback, please use the form below to get in touch with me. Thank you for visiting my portfolio. 
-      </p>
+      <motion.h2 
+        initial={{opacity: 0, y: -20}}
+        whileInView={{opacity: 1, y: 0}}
+        transition={{duration: 0.5, delay: 0.5}}
+        className='text-center text-5xl font-roboto'>Get In Touch</motion.h2>
 
-      <form onSubmit={onSubmit} className='max-w-2xl mx-auto'>
+      <motion.p 
+        initial={{opacity: 0}}
+        whileInView={{opacity: 1}}
+        transition={{duration: 0.5, delay: 0.7}}
+        className='text-center max-w-2xl mx-auto mt-5 mb-12 font-outfit'>
+          I would love to hear from you! If you have any questions, comments or feedback, please use the form below to get in touch with me. Thank you for visiting my portfolio. 
+      </motion.p>
+
+      {/* Contact Form */}
+      <motion.form 
+        initial={{opacity: 0}}
+        whileInView={{opacity: 1}}
+        transition={{duration: 0.5, delay: 0.9}}
+        onSubmit={onSubmit} className='max-w-2xl mx-auto'>
+
         <div className='grid grid-cols-auto gap-6 mt-10 mb-8'>
-            <input name='name' type='text' placeholder='Enter your Name' required className={`flex-1 p-3 outline-none border-[0.5px] rounded-md ${isDarkMode ? "border-white/90 bg-(--color-darkHover)/30 text-white placeholder:text-white/70" : "border-gray-400 bg-white text-gray-900 placeholder:text-gray-500"}`} />
-            <input name='email' type='email' placeholder='Enter your Email' required className={`flex-1 p-3 outline-none border-[0.5px] rounded-md ${isDarkMode ? "border-white/90 bg-(--color-darkHover)/30 text-white placeholder:text-white/70" : "border-gray-400 bg-white text-gray-900 placeholder:text-gray-500"}`} />
+
+            <motion.input 
+              initial={{opacity: 0, x: -50}}
+              whileInView={{opacity: 1, x: 0}}
+              transition={{duration: 0.6, delay: 1.1}}
+              name='name' type='text' placeholder='Enter your Name' required className={`flex-1 p-3 outline-none border-[0.5px] rounded-md ${isDarkMode ? "border-white/90 bg-(--color-darkHover)/30 text-white placeholder:text-white/70" : "border-gray-400 bg-white text-gray-900 placeholder:text-gray-500"}`} />
+            
+            <motion.input 
+              initial={{opacity: 0, x: 50}}
+              whileInView={{opacity: 1, x: 0}}
+              transition={{duration: 0.6, delay: 1.2}}
+              name='email' type='email' placeholder='Enter your Email' required className={`flex-1 p-3 outline-none border-[0.5px] rounded-md ${isDarkMode ? "border-white/90 bg-(--color-darkHover)/30 text-white placeholder:text-white/70" : "border-gray-400 bg-white text-gray-900 placeholder:text-gray-500"}`} />
         </div>
-        <textarea name='message' rows='6' placeholder='Enter your Message' required className={`w-full p-4 outline-none border-[0.5px] rounded-md mb-6 ${isDarkMode ? "border-white/90 bg-(--color-darkHover)/30 text-white placeholder:text-white/70" : "border-gray-400 bg-white text-gray-900 placeholder:text-gray-500"}`}></textarea>
-        <button type='submit' className={`py-3 px-8 w-max flex items-center justify-between gap-2 text-white rounded-full mx-auto duration-500 ${isDarkMode ? "bg-transparent border-[0.5px] hover:bg-(--color-darkHover)" : "bg-black/80 hover:bg-black"}`}>
-            Send Message <Image src={assets.right_arrow_white} alt='' className='w-4' />
-        </button>
+
+        <motion.textarea 
+          initial={{opacity: 0, y: 100}}
+          whileInView={{opacity: 1, y: 0}}
+          transition={{duration: 0.6, delay: 1.3}}
+          name='message' rows='6' placeholder='Enter your Message' required className={`w-full p-4 outline-none border-[0.5px] rounded-md mb-6 ${isDarkMode ? "border-white/90 bg-(--color-darkHover)/30 text-white placeholder:text-white/70" : "border-gray-400 bg-white text-gray-900 placeholder:text-gray-500"}`}>
+        </motion.textarea>
+        
+        {/* Send Button */}
+        <motion.button 
+          whileHover={{ scale: 1.02 }}
+          transition={{ duration: 0.3 }}
+          type='submit' className={`py-3 px-8 w-max flex items-center justify-between gap-2 text-white rounded-full mx-auto duration-500 ${isDarkMode ? "bg-transparent border-[0.5px] hover:bg-(--color-darkHover)" : "bg-black/80 hover:bg-black"}`}>
+            Send Message 
+              <Image src={assets.right_arrow_white} alt='' className='w-4' />
+        </motion.button>
 
         <p className='mt-4'>{result}</p>
-      </form>
-    </div>
+      </motion.form>
+    </motion.div>
   )
 }
 
