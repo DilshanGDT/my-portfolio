@@ -2,7 +2,7 @@ import { assets } from '@/assets/assets'
 import Image from 'next/image'
 import React from 'react'
 
-const Header = () => {
+const Header = ({ isDarkMode }) => {
   return (
     <div className='w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4'>
       <div>
@@ -17,11 +17,11 @@ const Header = () => {
       </p>
 
       <div className='flex flex-col sm:flex-row items-center gap-4 mt-4'>
-        <a href='#contact' className='px-10 py-3 border border-white rounded-full bg-black text-white flex items-center gap-2'>Contact Me
+        <a href='#contact' className={`px-10 py-3 border border-white rounded-full text-white flex items-center gap-2 ${isDarkMode ? "bg-transparent" : "bg-black"}`}>Contact Me
           <Image className='w-4' src={assets.right_arrow_white} alt='Contact' />
         </a>
 
-        <a href='/sample-resume' download className='px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2'>My Resume
+        <a href='/sample-resume' download className={`px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 bg-white ${isDarkMode ? "text-black" : ""}`}>My Resume
           <Image className='w-4' src={assets.download_icon} alt='Contact' />
         </a>
       </div>
