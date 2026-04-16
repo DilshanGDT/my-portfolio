@@ -23,7 +23,7 @@ const Services = ({ isDarkMode }) => {
         initial={{opacity: 0, y: -20}}
         whileInView={{opacity: 1, y: 0}}
         transition={{duration: 0.5, delay: 0.5}}
-        className='text-center text-5xl font-roboto'>My Services
+        className={`text-center text-5xl font-roboto ${isDarkMode ? "text-[#9CD5FF]" : "text-[#355872]"}`}>My Services
       </motion.h2>
 
       {/* Description */}

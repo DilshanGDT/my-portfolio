@@ -17,7 +17,7 @@ const ovoFont = Ovo({
 });
 
 export const metadata = {
-  title: "T Dilshan - Portfolio",
+  title: "DilshanGDT - Portfolio",
   description: "",
 };
 

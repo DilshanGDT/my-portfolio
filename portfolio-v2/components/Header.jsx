@@ -21,7 +21,7 @@ const Header = ({ isDarkMode }) => {
         initial={{y: -20, opacity: 0}}
         whileInView={{y: 0, opacity: 1}}
         transition={{duration: 0.6, delay: 0.3}}
-        className='flex items-end gap-2 text-xl md:text-2xl mb-3 font-outfit'>
+        className='flex items-end gap-2 text-xl md:text-2xl mb-3 font-outfit '>
           Hi! I'm Tharaka Dilshan 
             <Image src={assets.hand_icon} alt='' className='w-5' />
       </motion.h3>
@@ -30,8 +30,8 @@ const Header = ({ isDarkMode }) => {
         initial={{y: -30, opacity: 0}}
         whileInView={{y: 0, opacity: 1}}
         transition={{duration: 0.8, delay: 0.5}}
-        className='text-3xl sm:text-6xl lg:text-[66px] font-roboto'>
-          Full Stack Web Developer in Sri Lanka
+        className={`text-3xl sm:text-6xl lg:text-[66px] font-roboto ${isDarkMode ? "text-[#9CD5FF]" : "text-[#355872]"}`}>
+          Full Stack Web Developer
       </motion.h1>
       
       <motion.p 
@@ -50,9 +50,9 @@ const Header = ({ isDarkMode }) => {
           initial={{y: 30, opacity: 0}}
           whileInView={{y: 0, opacity: 1}}
           transition={{duration: 0.6, delay: 1}}
-          href='#contact' className={`px-10 py-3 border border-white rounded-full text-white flex items-center gap-2 ${isDarkMode ? "bg-transparent" : "bg-black"}`}>
+          href='#contact' className={`px-10 py-3 border rounded-full flex items-center gap-2 ${isDarkMode ? "bg-[#9CD5FF] text-black border-[#9CD5FF]" : "bg-[#355872] text-white border-[#355872]"}`}>
             Contact Me
-              <Image className='w-4' src={assets.right_arrow_white} alt='Contact' />
+              <Image className='w-4' src={isDarkMode ? assets.right_arrow_black : assets.right_arrow_white} alt='Contact' />
         </motion.a>
 
         {/* Download Resume Button */}
@@ -60,9 +60,9 @@ const Header = ({ isDarkMode }) => {
           initial={{y: 30, opacity: 0}}
           whileInView={{y: 0, opacity: 1}}
           transition={{duration: 0.6, delay: 1.2}}
-          href='/sample-resume' download className={`px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 bg-white ${isDarkMode ? "text-black" : ""}`}>
+          href='/sample-resume' download className={`px-10 py-3 border rounded-full border-[#355872] flex items-center gap-2 bg-white ${isDarkMode ? "text-black" : ""}`}>
             My Resume
-              <Image className='w-4' src={assets.download_icon} alt='Contact' />
+              <Image className='w-4 ' src={assets.download_icon} alt='Contact' />
         </motion.a>
       </div>
     </div>
