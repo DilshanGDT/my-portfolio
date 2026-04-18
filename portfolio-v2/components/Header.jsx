@@ -49,6 +49,7 @@ const Header = ({ isDarkMode }) => {
         <motion.a 
           initial={{y: 30, opacity: 0}}
           whileInView={{y: 0, opacity: 1}}
+          whileHover={{ scale: 1.02 }}
           transition={{duration: 0.6, delay: 1}}
           href='#contact' className={`px-10 py-3 border rounded-full flex items-center gap-2 ${isDarkMode ? "bg-[#9CD5FF] text-black border-[#9CD5FF]" : "bg-[#355872] text-white border-[#355872]"}`}>
             Contact Me
@@ -59,6 +60,7 @@ const Header = ({ isDarkMode }) => {
         <motion.a 
           initial={{y: 30, opacity: 0}}
           whileInView={{y: 0, opacity: 1}}
+          whileHover={{ scale: 1.02 }}
           transition={{duration: 0.6, delay: 1.2}}
           href='/sample-resume' download className={`px-10 py-3 border rounded-full border-[#355872] flex items-center gap-2 bg-white ${isDarkMode ? "text-black" : ""}`}>
             My Resume

@@ -6,8 +6,17 @@ import { motion } from 'motion/react'
 const Navbar = ({ isDarkMode, setIsDarkMode }) => {
 
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('top');
+  const [hoveredSection, setHoveredSection] = useState(null);
 
   const sideMenuRef = useRef();
+  const navItems = [
+    { id: 'top', label: 'Home' },
+    { id: 'about', label: 'About Me' },
+    { id: 'services', label: 'Services' },
+    { id: 'work', label: 'My Work' },
+    { id: 'contact', label: 'Contact Me' },
+  ];
 
   const openMenu = () => {
     sideMenuRef.current.style.transform = 'translateX(-16rem)';
@@ -18,14 +27,34 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', ()=>{
-      if(scrollY > 50){
-        setIsScrolled(true);
-      } else{
-        setIsScrolled(false);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+
+      const threshold = window.innerHeight * 0.35;
+      const sections = navItems.map((item) => ({
+        id: item.id,
+        element: item.id === 'top' ? document.documentElement : document.getElementById(item.id),
+      }));
+
+      if (window.scrollY < 80) {
+        setActiveSection('top');
+        return;
       }
-    })
-  }, [])
+
+      for (const section of sections) {
+        if (!section.element || section.id === 'top') continue;
+        const rect = section.element.getBoundingClientRect();
+        if (rect.top <= threshold && rect.bottom >= threshold) {
+          setActiveSection(section.id);
+          return;
+        }
+      }
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
@@ -39,11 +68,30 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
         </a>
 
         <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 ${isScrolled ? "" : isDarkMode ? "border border-white/50 bg-transparent text-white" : "bg-white shadow-sm bg-opacity-50 text-gray-800"}`}>
-            <li><a className='font-roboto' href='#top'>Home</a></li>
-            <li><a className='font-roboto' href='#about'>About Me</a></li>
-            <li><a className='font-roboto' href='#services'>Services</a></li>
-            <li><a className='font-roboto' href='#work'>My Work</a></li>
-            <li><a className='font-roboto' href='#contact'>Contact Me</a></li>
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id;
+              const isHovered = hoveredSection === item.id;
+              return (
+                <li key={item.id}>
+                  <a
+                    className='relative font-roboto pb-1'
+                    href={`#${item.id}`}
+                    onClick={() => setActiveSection(item.id)}
+                    onMouseEnter={() => setHoveredSection(item.id)}
+                    onMouseLeave={() => setHoveredSection(null)}
+                  >
+                    {item.label}
+                    <motion.span
+                      className='absolute left-1/2 -translate-x-1/2 bottom-0 h-[2px] w-full rounded-full'
+                      style={{ backgroundColor: isDarkMode ? '#9CD5FF' : '#355872', transformOrigin: 'center' }}
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: isActive || isHovered ? 1 : 0 }}
+                      transition={{ duration: 0.22, ease: 'easeOut' }}
+                    />
+                  </a>
+                </li>
+              );
+            })}
         </ul>
 
         <div className='flex items-center gap-4'>

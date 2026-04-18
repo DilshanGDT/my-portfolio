@@ -64,6 +64,7 @@ const Work = ({ isDarkMode }) => {
       <motion.a 
         initial={{opacity: 0}}
         whileInView={{opacity: 1}}
+        whileHover={{ scale: 1.02 }}
         transition={{duration: 0.5, delay: 1.1}}
         href='' className={`w-max flex items-center justify-center gap-2 border-[0.5px] rounded-full py-3 px-10 mx-auto my-20 duration-500 ${isDarkMode ? "text-white border-white hover:bg-(--color-darkHover)" : "text-gray-700 border-gray-700 hover:bg-(--color-lightHover)"}`}>
           Show More...
