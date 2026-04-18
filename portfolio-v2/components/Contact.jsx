@@ -1,32 +1,43 @@
 import { assets } from '@/assets/assets'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { motion } from 'motion/react'
 
 const Contact = ({ isDarkMode }) => {
 
-  const [result, setResult] = useState("");
+  const [toast, setToast] = useState(null);
+  const toastTimeoutRef = useRef(null);
+
+  const showToast = (message, type) => {
+    setToast({ message, type });
+    if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
+    toastTimeoutRef.current = setTimeout(() => setToast(null), 3200);
+  };
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    setResult("Sending....");
     const formData = new FormData(event.target);
 
     formData.append("access_key", "bdc4bddf-138b-4e24-94e5-67d76f1d238a");
-
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData
-    });
-
-    const data = await response.json();
-
-    if (data.success) {
-      setResult("Form Submitted Successfully");
-      event.target.reset();
-    } else {
-      console.log("Error", data);
-      setResult(data.message);
+    
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+  
+      const data = await response.json();
+  
+      if (data.success) {
+        showToast("Form Submitted Successfully", "success");
+        event.target.reset();
+      } else {
+        console.log("Error", data);
+        showToast(data.message || "Failed to send message", "error");
+      }
+    } catch (error) {
+      console.log("Error", error);
+      showToast("Network error. Please try again.", "error");
     }
   };
 
@@ -36,6 +47,16 @@ const Contact = ({ isDarkMode }) => {
       whileInView={{opacity: 1}}
       transition={{duration: 1}}
       id='contact' className={`w-full px-[12%] py-10 scroll-mt-20 bg-no-repeat bg-center bg-size-[90%_auto] ${isDarkMode ? "bg-none" : 'bg-[url("/footer-bg-color.png")]'}`}>
+      
+      {toast && (
+        <motion.div
+          initial={{ y: -24, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          className={`fixed top-5 left-1/2 -translate-x-1/2 z-[100] px-5 py-3 rounded-lg text-white shadow-lg ${toast.type === "success" ? "bg-green-600" : "bg-red-600"}`}
+        >
+          {toast.message}
+        </motion.div>
+      )}
       
       {/* Heading & Subheading */}
       <motion.h4 
@@ -97,8 +118,6 @@ const Contact = ({ isDarkMode }) => {
             Send Message 
               <Image src={assets.right_arrow_white} alt='' className='w-4' />
         </motion.button>
-
-        <p className='mt-4'>{result}</p>
       </motion.form>
     </motion.div>
   )
