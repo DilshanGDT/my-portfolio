@@ -82,7 +82,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                   >
                     {item.label}
                     <motion.span
-                      className='absolute left-1/2 -translate-x-1/2 bottom-0 h-[2px] w-full rounded-full'
+                      className='absolute left-1/2 -translate-x-1/2 bottom-0 h-0.5 w-full rounded-full'
                       style={{ backgroundColor: isDarkMode ? '#9CD5FF' : '#355872', transformOrigin: 'center' }}
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: isActive || isHovered ? 1 : 0 }}
