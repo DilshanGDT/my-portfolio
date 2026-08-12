@@ -39,6 +39,10 @@ eportfolio/
 │   │   ├── chert-nodes.png  ← Project screenshots
 │   │   ├── protect-x.png
 │   │   └── kahoot-answers.png
+│   ├── blogs/
+│   │   ├── blog-1.png       ← Blog cover images
+│   │   ├── blog-2.png
+│   │   └── blog-3.png
 │   └── certificates/
 │       ├── react-cert-1.png ← Certificate images
 │       └── ...
@@ -49,6 +53,7 @@ eportfolio/
 │   │   ├── EducationExperience.tsx
 │   │   ├── SkillsTechnologies.tsx
 │   │   ├── Projects.tsx
+│   │   ├── Blogs.tsx
 │   │   ├── ContactMe.tsx
 │   │   └── Footer.tsx
 │   ├── context/
@@ -75,6 +80,7 @@ Edit **`src/data/portfolioData.ts`** — this single file controls:
 - Education & experience entries (with descriptions for the popup)
 - Skills + certificate images & descriptions
 - Projects (title, description, tags, links, image)
+- Blogs (title, excerpt, Medium URL, cover image) + your Medium profile URL
 - Footer info
 
 ### 2. Add your images
@@ -85,6 +91,7 @@ Place files in the `/public` folder (they are served from the root `/`):
 | `public/profile.png` | Hero section photo |
 | `public/resume.pdf` | Downloaded when "My Resume" is clicked |
 | `public/projects/chert-nodes.png` | Project card images |
+| `public/blogs/blog-1.png` | Blog cover images (Medium articles) |
 | `public/certificates/react-cert-1.png` | Certificate images in skill popups |
 
 ### 3. Connect Web3Forms (Contact Form)
