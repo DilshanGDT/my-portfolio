@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 
 // ⚠️  Replace with your Web3Forms access key from https://web3forms.com/
-const WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY';
+const WEB3FORMS_ACCESS_KEY = 'bdc4bddf-138b-4e24-94e5-67d76f1d238a';
 
 interface FormState {
   name: string;

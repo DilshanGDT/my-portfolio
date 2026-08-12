@@ -43,12 +43,13 @@ const Navbar: React.FC = () => {
     '#about-me': 'education-experience',
     '#skills': 'skills-technologies',
     '#my-work': 'projects',
+    '#blogs': 'blogs',
     '#contacts': 'contact-me',
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['education-experience', 'skills-technologies', 'projects', 'contact-me'];
+      const sections = ['education-experience', 'skills-technologies', 'projects', 'blogs', 'contact-me'];
       let current = '';
       for (const id of sections) {
         const el = document.getElementById(id);

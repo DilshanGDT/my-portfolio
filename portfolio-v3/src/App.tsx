@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import EducationExperience from './components/EducationExperience';
 import SkillsTechnologies from './components/SkillsTechnologies';
 import Projects from './components/Projects';
+import Blogs from './components/Blogs';
 import ContactMe from './components/ContactMe';
 import Footer from './components/Footer';
 
@@ -21,6 +22,7 @@ const App: React.FC = () => {
           <EducationExperience />
           <SkillsTechnologies />
           <Projects />
+          <Blogs />
           <ContactMe />
         </main>
 
